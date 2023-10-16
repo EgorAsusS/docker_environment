@@ -1,1 +1,0 @@
-FROM php:8.1.25RC1-zts-alpine3.17

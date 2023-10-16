@@ -1,0 +1,1 @@
+Чтобы запустить docker нужно из папки prod выполнить docker-compose up
