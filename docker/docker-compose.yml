@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  php8.1:
+    image: php:8.1.25RC1-zts-alpine3.18
+  postgresql:
+    image: postgres:16-alpine3.17
+  nginx:
+    image: nginx:mainline-alpine3.18-slim
+  adminer:
+    image: adminer:latest
