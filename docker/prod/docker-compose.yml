@@ -21,7 +21,5 @@ services:
     depends_on:
       - postgresql
       - php8.1
-  adminer:
-    image: adminer:latest
 volumes:
   postgresdb:

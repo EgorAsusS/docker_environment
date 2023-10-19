@@ -1,27 +1,41 @@
 version: '3.8'
 
 services:
-  php8.1:
-    image: php:8.1.25RC1-zts-alpine3.18
+  php:
+    build: ./images/php
+    links:
+      - postgresql
+    networks:
+      - docker_env
   postgresql:
     image: postgres:16-alpine3.17
     environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD:${POSTGRES_PASSWORD}"
+      - POSTGRES_USER:"${POSTGRES_USER}"
     volumes:
       - postgresdb:/usr/src/data/db
-    ports:
-      - 5432:5432
+    networks:
+      - docker_env
   nginx:
-    image: nginx:mainline-alpine3.18-slim
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
     ports:
-      - 80:80
+      - ${port}:${port}
     volumes:
-      - ./nginx/nginx.conf.prod:/etc/nginx/conf.d/nginx.conf
-    depends_on:
-      - postgresql
-      - php8.1
+      - ./images/php/project_docker/hello.dev:/usr/src/project/hello.dev
+
+
+      - ./logs/nginx-access.log:/usr/src/log/nginx/nginx-access.log
+      - ./logs/nginx-error.log:/usr/src/log/nginx/nginx-error.log
+    networks:
+      - docker_env
   adminer:
     image: adminer:latest
+    networks:
+      - docker_env
 volumes:
   postgresdb:
+networks:
+  docker_env:
+    driver: bridge
