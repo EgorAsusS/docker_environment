@@ -4,6 +4,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 ADD php.ini /usr/local/etc/php/conf.d/40-custom.ini
 
-WORKDIR /usr/src/project/hello.dev
+WORKDIR /usr/src/project/
 
-COPY ./project_docker/hello.dev /usr/src/project/hello.dev
+COPY ./project /usr/src/project/
