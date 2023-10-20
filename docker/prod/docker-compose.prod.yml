@@ -7,9 +7,9 @@ services:
         links:
             - postgresql
         networks:
-            - dockernet
+            - dockernet_prod
         container_name:
-            php
+            php_prod
     postgresql:
         image: postgres:16-alpine3.17
         environment:
@@ -18,9 +18,9 @@ services:
         volumes:
             - postgresdb:/usr/src/data/db
         networks:
-            - dockernet
+            - dockernet_prod
         container_name:
-            postgresql
+            postgresql_prod
     nginx:
         build:
             context: .
@@ -31,17 +31,11 @@ services:
             - ./php/project:/usr/src/project/
             - ./logs/nginx/:/usr/src/log/nginx/
         networks:
-            - dockernet
+            - dockernet_prod
         container_name:
-            nginx
-    adminer:
-        image: adminer:latest
-        networks:
-            - dockernet
-        container_name:
-            adminer
+            nginx_prod
 volumes:
   postgresdb:
 networks:
-  dockernet:
+  dockernet_prod:
     driver: bridge

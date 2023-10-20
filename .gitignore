@@ -1,2 +1,4 @@
 docker/dev/logs/
 docker/dev/.env
+docker/prod/logs/
+docker/prod/.env
