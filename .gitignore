@@ -1,2 +1,2 @@
-docker/dev/logs
-docker/dev/.env
+logs
+.env
