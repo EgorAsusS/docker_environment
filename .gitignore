@@ -1,2 +1,2 @@
-logs
-.env
+docker/dev/logs/
+docekr/dev/.env
