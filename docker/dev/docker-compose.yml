@@ -24,8 +24,6 @@ services:
       - ${port}:${port}
     volumes:
       - ./images/php/project_docker/hello.dev:/usr/src/project/hello.dev
-
-
       - ./logs/nginx-access.log:/usr/src/log/nginx/nginx-access.log
       - ./logs/nginx-error.log:/usr/src/log/nginx/nginx-error.log
     networks:
